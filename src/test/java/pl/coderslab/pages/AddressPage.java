@@ -3,77 +3,85 @@ package pl.coderslab.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-import java.util.Map;
+import java.time.Duration;
 
 public class AddressPage {
-    private WebDriver driver;
 
-    private By addressesSectionLink = By.xpath("//a[@title='Addresses']");
-    private By createNewAddressButton = By.cssSelector("#content > div.addresses-footer > a > span");
-    private By aliasInput = By.name("alias");
-    private By addressInput = By.name("address1");
-    private By cityInput = By.name("city");
-    private By postalCodeInput = By.name("postcode");
-    private By countrySelect = By.name("id_country");
-    private By phoneInput = By.name("phone");
-    private By saveButton = By.xpath("//*[@id='content']/div/div/form/footer/button");
-    private By addressBoxes = By.cssSelector("article.address");
+    private WebDriver driver;
+    private WebDriverWait wait;
+
+    @FindBy(xpath = "//a[@title='Addresses']")
+    private WebElement addressesSectionLink;
+
+    @FindBy(css = "a[data-link-action='add-address']")
+    private WebElement createNewAddressButton;
+
+    @FindBy(css = "article.alert.alert-success")
+    private WebElement successAlert;
 
     public AddressPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        PageFactory.initElements(driver, this);
     }
 
+    // 🔹 Przejście do sekcji Addresses
     public void goToAddressesSection() {
-        driver.findElement(addressesSectionLink).click();
+        System.out.println("📬 Przechodzę do sekcji 'Addresses'");
+        addressesSectionLink.click();
     }
 
+    // 🔹 Kliknięcie "Create new address"
     public void clickCreateNewAddress() {
-        driver.findElement(createNewAddressButton).click();
+        System.out.println("📝 Klikam 'Create new address'");
+        createNewAddressButton.click();
     }
 
-    public void fillNewAddressForm(Map<String, String> data) {
-        WebElement aliasField = driver.findElement(aliasInput);
-        aliasField.clear();
-        aliasField.sendKeys(data.get("alias"));
-
-        WebElement addressField = driver.findElement(addressInput);
-        addressField.clear();
-        addressField.sendKeys(data.get("address"));
-
-        WebElement cityField = driver.findElement(cityInput);
-        cityField.clear();
-        cityField.sendKeys(data.get("city"));
-
-        WebElement postalCodeField = driver.findElement(postalCodeInput);
-        postalCodeField.clear();
-        postalCodeField.sendKeys(data.get("postalCode"));
-
-        WebElement phoneField = driver.findElement(phoneInput);
-        phoneField.clear();
-        phoneField.sendKeys(data.get("phone"));
-
-        WebElement countryDropdown = driver.findElement(countrySelect);
-        Select selectCountry = new Select(countryDropdown);
-        selectCountry.selectByVisibleText(data.get("country"));
-
-        driver.findElement(saveButton).click();
-    }
-
+    // 🔹 Sprawdzenie, czy adres o aliasie istnieje
     public boolean isAddressDisplayed(String alias) {
-        List<WebElement> boxes = driver.findElements(addressBoxes);
-        return boxes.stream().anyMatch(box -> box.getText().contains(alias));
+        try {
+            WebElement aliasHeader = driver.findElement(By.xpath(
+                    "//article[contains(@class,'address')]//h4[text()='" + alias + "']"));
+            boolean visible = aliasHeader.isDisplayed();
+            System.out.println("🔍 Sprawdzam czy adres '" + alias + "' jest widoczny: " + visible);
+            return visible;
+        } catch (Exception e) {
+            System.out.println("⚠️ Alias '" + alias + "' nie został znaleziony.");
+            return false;
+        }
     }
 
+    // 🔹 Usunięcie adresu po aliasie (bez obsługi alertu JS i bez dodatkowych logów)
     public void deleteAddress(String alias) {
-        List<WebElement> boxes = driver.findElements(addressBoxes);
-        for (WebElement box : boxes) {
-            if (box.getText().contains(alias)) {
-                box.findElement(By.cssSelector("a[data-link-action='delete-address']")).click();
-                break;
-            }
+        try {
+            WebElement addressBlock = driver.findElement(By.xpath(
+                    "//article[contains(@class,'address')][.//h4[text()='" + alias + "']]"));
+            WebElement deleteButton = addressBlock.findElement(By.cssSelector("a[data-link-action='delete-address']"));
+            deleteButton.click();
+
+            // Czekamy na pojawienie się komunikatu sukcesu
+            wait.until(ExpectedConditions.visibilityOf(successAlert));
+            System.out.println("✅ Adres '" + alias + "' został usunięty.");
+        } catch (Exception e) {
+            System.out.println("❌ Nie udało się usunąć adresu '" + alias + "'");
+            e.printStackTrace();
+        }
+    }
+
+    // 🔹 Sprawdzenie komunikatu sukcesu
+    public boolean isSuccessMessageDisplayed(String expectedText) {
+        try {
+            boolean visible = successAlert.isDisplayed() && successAlert.getText().contains(expectedText);
+            System.out.println("📢 Sprawdzam komunikat sukcesu: " + visible);
+            return visible;
+        } catch (Exception e) {
+            System.out.println("❌ Komunikat sukcesu nie został znaleziony.");
+            return false;
         }
     }
 }

@@ -1,46 +1,63 @@
 package pl.coderslab.pages;
 
-import io.cucumber.datatable.DataTable;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.Map;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class NewAddressPage {
+
     private WebDriver driver;
+
+    @FindBy(name = "alias")
+    private WebElement aliasField;
+
+    @FindBy(name = "address1")
+    private WebElement addressField;
+
+    @FindBy(name = "city")
+    private WebElement cityField;
+
+    @FindBy(name = "postcode")
+    private WebElement postalCodeField;
+
+    @FindBy(name = "id_country")
+    private WebElement countrySelect;
+
+    @FindBy(name = "phone")
+    private WebElement phoneField;
+
+    @FindBy(xpath = "//*[@id='content']/div/div/form/footer/button")
+    private WebElement saveButton;
 
     public NewAddressPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    public void fillAddressForm(DataTable dataTable) {
-        Map<String, String> data = dataTable.asMap(String.class, String.class);
-
-        WebElement aliasField = driver.findElement(By.name("alias"));
+    // Wypełnianie formularza przekazując wartości osobno
+    public void fillAddressForm(String alias, String address, String city, String postalCode, String country, String phone) {
         aliasField.clear();
-        aliasField.sendKeys(data.get("alias"));
+        aliasField.sendKeys(alias);
 
-        WebElement addressField = driver.findElement(By.name("address1"));
         addressField.clear();
-        addressField.sendKeys(data.get("address"));
+        addressField.sendKeys(address);
 
-        WebElement cityField = driver.findElement(By.name("city"));
         cityField.clear();
-        cityField.sendKeys(data.get("city"));
+        cityField.sendKeys(city);
 
-        WebElement postalCodeField = driver.findElement(By.name("postcode"));
         postalCodeField.clear();
-        postalCodeField.sendKeys(data.get("postalCode"));
+        postalCodeField.sendKeys(postalCode);
 
-        WebElement phoneField = driver.findElement(By.name("phone"));
+        Select selectCountry = new Select(countrySelect);
+        selectCountry.selectByVisibleText(country);
+
         phoneField.clear();
-        phoneField.sendKeys(data.get("phone"));
+        phoneField.sendKeys(phone);
+    }
 
-        WebElement countrySelect = driver.findElement(By.name("id_country"));
-        countrySelect.click(); // Możesz dodać wybór konkretnego kraju przez Select, jeśli potrzebujesz
-
-        WebElement saveButton = driver.findElement(By.xpath("//*[@id='content']/div/div/form/footer/button"));
+    public void clickSave() {
         saveButton.click();
     }
 }

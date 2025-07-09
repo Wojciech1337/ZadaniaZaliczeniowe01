@@ -1,30 +1,38 @@
 package pl.coderslab.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class AccountPage {
+
     private WebDriver driver;
 
-    private By addressesLink = By.xpath("//a[@title='Addresses']");
+    // ======= Lokatory =======
+    @FindBy(css = "h1.page-title")
+    private WebElement accountHeader;
 
+    @FindBy(css = "a[data-link-action='addresses']")
+    private WebElement addressesLink;
+
+    // ======= Konstruktor =======
     public AccountPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    // ======= Metody =======
+    public boolean isOnAccountPage() {
+        try {
+            String headerText = accountHeader.getText().trim();
+            return headerText.equalsIgnoreCase("Your account");
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void goToAddresses() {
-        WebElement addressesElement = driver.findElement(addressesLink);
-        // Dla linku nie ma sensu clear(), więc od razu klikamy
-        addressesElement.click();
-    }
-
-    // Przykład metody z polem tekstowym i czyszczeniem
-    private By exampleInput = By.id("example-input");
-
-    public void fillExampleInput(String text) {
-        WebElement input = driver.findElement(exampleInput);
-        input.clear();          // czyścimy pole
-        input.sendKeys(text);   // wpisujemy tekst
+        addressesLink.click();
     }
 }
