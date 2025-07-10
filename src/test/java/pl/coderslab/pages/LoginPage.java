@@ -16,7 +16,7 @@ public class LoginPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    // ======= Lokatory =======
+    // ======= Lokatory elementów =======
     @FindBy(name = "email")
     private WebElement emailInput;
 
@@ -30,6 +30,7 @@ public class LoginPage {
     private WebElement errorMessage;
 
     // ======= Konstruktor =======
+    // Inicjalizuje WebDriver i elementy strony
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -38,15 +39,13 @@ public class LoginPage {
 
     // ======= Metody działania =======
 
-    // 🌐 Otwiera stronę logowania
+    // Otwiera stronę logowania
     public void open() {
-        System.out.println("🌐 Otwieram stronę logowania: " + LOGIN_URL);
         driver.get(LOGIN_URL);
-        wait.until(ExpectedConditions.visibilityOf(loginButton));
-        System.out.println("✅ Strona logowania załadowana");
+        wait.until(ExpectedConditions.visibilityOf(loginButton)); // czekaj, aż przycisk logowania będzie widoczny
     }
 
-    // 🔑 Loguje użytkownika podanym emailem i hasłem
+    // Loguje użytkownika podanym emailem i hasłem
     public void login(String email, String password) {
         wait.until(ExpectedConditions.visibilityOf(emailInput));
 
@@ -57,19 +56,5 @@ public class LoginPage {
         passwordInput.sendKeys(password);
 
         loginButton.click();
-
-    }
-
-    // 👁️ Sprawdza, czy jesteśmy na stronie logowania
-    public boolean isAt() {
-        System.out.println("👁️ Sprawdzam, czy jesteśmy na stronie logowania...");
-        try {
-            boolean displayed = loginButton.isDisplayed();
-            System.out.println("👁️ Wynik sprawdzenia: " + displayed);
-            return displayed;
-        } catch (Exception e) {
-            System.out.println("❌ Nie jesteśmy na stronie logowania");
-            return false;
-        }
     }
 }
