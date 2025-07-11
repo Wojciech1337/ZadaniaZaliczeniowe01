@@ -3,6 +3,7 @@ package pl.coderslab.stepdefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pl.coderslab.pages.LoginPage;
@@ -17,7 +18,7 @@ public class LoginSteps {
     // Statyczny WebDriver współdzielony między krokami
     public static WebDriver driver;
 
-    // Obiekty stron wykorzystywane w testach
+    // Obiekty stron
     private LoginPage loginPage;
     private AccountPage myAccountPage;
 
@@ -40,25 +41,22 @@ public class LoginSteps {
         }
     }
 
-    // Krok: otwiera stronę logowania
+    // Otwiera stronę logowania
     @Given("the user is on the login page")
     public void theUserIsOnTheLoginPage() {
         System.out.println("🌐 Otwieram stronę logowania");
         loginPage.open();
     }
 
-    // Krok: wykonuje logowanie na podstawie podanego email i hasła
+    // Wykonuje logowanie na podstawie podanego email i hasła
     @And("the user logs in with email {string} and password {string}")
     public void theUserLogsInWithEmailAndPassword(String email, String password) {
         System.out.println("🔑 Loguję się jako: " + email);
         loginPage.login(email, password);
 
-        String currentUrl = driver.getCurrentUrl();
-            System.out.println("🌍 Aktualny URL po logowaniu: " + currentUrl);
-
-            assertTrue("❌ Nie jesteśmy na stronie konta (URL różni się)",
-                    currentUrl.contains("controller=my-account"));
-
-            System.out.println("✅ Zalogowano poprawnie");
-        }
+        //  Sprawdzamy obecność przycisku "Sign out"
+        boolean isSignOutVisible = myAccountPage.isSignOutVisible();
+        Assertions.assertTrue(isSignOutVisible, "❌ Nie znaleziono przycisku 'Sign out' — logowanie mogło się nie powieść.");
+        System.out.println("✅ Zalogowano poprawnie — przycisk 'Sign out' widoczny.");
+    }
 }

@@ -14,8 +14,8 @@ public class AccountPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(css = "h1.page-title")
-    private WebElement accountHeader;
+    @FindBy(css = "a[href*='mylogout']")
+    private WebElement signOutLink;
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
@@ -23,13 +23,14 @@ public class AccountPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public boolean isOnAccountPage() {
+    public boolean isSignOutVisible() {
         try {
-            wait.until(ExpectedConditions.visibilityOf(accountHeader));
-            String headerText = accountHeader.getText().trim();
-            return headerText.equalsIgnoreCase("Your account");
+            wait.until(ExpectedConditions.visibilityOf(signOutLink));
+            return signOutLink.isDisplayed();
         } catch (Exception e) {
             return false;
         }
     }
-}
+
+    }
+

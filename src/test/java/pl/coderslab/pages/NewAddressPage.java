@@ -10,6 +10,8 @@ public class NewAddressPage {
 
     private WebDriver driver;
 
+    // Lokatory
+
     @FindBy(name = "alias")
     private WebElement aliasField;
 
@@ -36,7 +38,7 @@ public class NewAddressPage {
         PageFactory.initElements(driver, this);
     }
 
-    // Wypełnianie formularza przekazując wartości osobno
+    // Wypełnianie formularza
     public void fillAddressForm(String alias, String address, String city, String postalCode, String country, String phone) {
         aliasField.clear();
         aliasField.sendKeys(alias);

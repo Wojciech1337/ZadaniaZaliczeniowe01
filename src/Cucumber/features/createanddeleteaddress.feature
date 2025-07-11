@@ -8,7 +8,7 @@ Feature: Create and delete address
     And the user clicks on "Create new address"
     And the user fills in the new address form with alias "<alias>", address "<address>", city "<city>", postalCode "<postalCode>", country "<country>", phone "<phone>"
     And the user clicks the Save button
-    Then the new address "<alias>" should be displayed in the address list
+    Then the new address with alias "<alias>", should have correct data  address "<address>", city "<city>", postalCode "<postalCode>", country "<country>", phone "<phone>"
 
     When the user deletes the address "<alias>"
     Then the address "<alias>" should no longer be displayed in the address list
