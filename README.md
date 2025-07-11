@@ -26,10 +26,10 @@ Testowany scenariusz dotyczy sklepu internetowego MyStore TestLab, a jego celem 
 
 - `src/test/java/pl/coderslab/pages/` – klasy Page Object (np. `AddressPage`, `NewAddressPage`, `LoginPage`)
 - `src/test/java/pl/coderslab/stepdefinitions/` – definicje kroków Cucumbera:
-    - `AddressSteps.java` – logowanie, przejście do sekcji adresów, dodanie nowego adresu
-    - `DeleteAddressSteps.java` – usunięcie adresu i weryfikacja usunięcia
-    - `LoginSteps.java` – logowanie do sklepu
-- `src/test/resources/features/` – plik `createanddeleteaddress.feature` z opisem scenariuszy testowych
+- `AddressSteps.java` – logowanie, przejście do sekcji adresów, dodanie nowego adresu
+- `DeleteAddressSteps.java` – usunięcie adresu i weryfikacja usunięcia
+- `LoginSteps.java` – logowanie do sklepu
+- `src/Cucumber/features/` – plik `createanddeleteaddress.feature` z opisem scenariuszy testowych
 
 ## Dane logowania testowego
 
