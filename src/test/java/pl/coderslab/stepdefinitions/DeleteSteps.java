@@ -20,7 +20,7 @@ public class DeleteSteps {
     @Then("the address {string} should no longer be displayed in the address list")
     public void theAddressShouldBeDeleted(String alias) {
 
-        // Opcjonalnie: sprawdź, czy adres faktycznie zniknął z listy
+        // Sprawdzi, czy adres faktycznie zniknął z listy
         boolean isAddressGone = !addressPage.isAddressDisplayed(alias);
         Assertions.assertTrue(isAddressGone, "❌ Adres nadal widoczny na liście po usunięciu: " + alias);
 

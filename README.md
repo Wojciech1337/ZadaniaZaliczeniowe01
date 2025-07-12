@@ -12,7 +12,7 @@ Testowany scenariusz dotyczy sklepu internetowego MyStore TestLab, a jego celem 
 - weryfikacja poprawności dodanego adresu,
 - usunięcie wcześniej dodanego adresu,
 - potwierdzenie, że adres został usunięty.
-
+    
 ## Technologie
 
 - Java
