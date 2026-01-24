@@ -1,43 +1,81 @@
-# Zadanie Zaliczeniowe nr 1 – Automatyzacja zarządzania adresami
+# Automatyzacja Zarządzania Adresami – Test Automation Framework
 
-## Opis projektu
-
-Projekt realizuje scenariusz automatyzacji testów z wykorzystaniem frameworka Cucumber, biblioteki Selenium WebDriver oraz wzorca projektowego Page Object Model (POM).
-
-Testowany scenariusz dotyczy sklepu internetowego MyStore TestLab, a jego celem jest:
-
-- zalogowanie się na istniejące konto użytkownika,
-- przejście do sekcji „Addresses”,
-- dodanie nowego adresu z parametryzowanymi danymi (alias, adres, miasto, kod pocztowy, kraj, telefon),
-- weryfikacja poprawności dodanego adresu,
-- usunięcie wcześniej dodanego adresu,
-- potwierdzenie, że adres został usunięty.
-    
-## Technologie
-
+**Opis projektu**  
+Automatyzacja testów end-to-end dla funkcjonalności zarządzania adresami w sklepie internetowym *MyStore TestLab* wykorzystując:
 - Java
 - Maven
 - Selenium WebDriver
 - Cucumber (BDD)
 - Page Object Model
-- JUnit Jupiter (JUnit 5)
+- JUnit 5
 
-## Struktura projektu
+**Testowane scenariusze**
+Testy pokrywają:
+1. Logowanie użytkownika do konta.
+2. Przejście do sekcji **„Addresses”**.
+3. Dodanie nowego adresu z parametryzowanymi danymi.
+4. Weryfikację poprawności dodanego adresu.
+5. Usunięcie wcześniej dodanego adresu.
+6. Potwierdzenie usunięcia (brak adresu).  
+*(Scenariusze BDD w pliku `.feature`)*
 
-- `src/test/java/pl/coderslab/pages/` – klasy Page Object (np. `AddressPage`, `NewAddressPage`, `LoginPage`)
-- `src/test/java/pl/coderslab/stepdefinitions/` – definicje kroków Cucumbera:
-- `AddressSteps.java` – logowanie, przejście do sekcji adresów, dodanie nowego adresu
-- `DeleteAddressSteps.java` – usunięcie adresu i weryfikacja usunięcia
-- `LoginSteps.java` – logowanie do sklepu
-- `src/Cucumber/features/` – plik `createanddeleteaddress.feature` z opisem scenariuszy testowych
+---
 
-## Dane logowania testowego
+## 🚀 Jak uruchomić projekt
 
-- Email: `wojtek@wojtek.pl`
-- Hasło: `Masakra!23`
+### 📌 Wymagania
+- JDK 11 lub nowsze
+- Maven
+- ChromeDriver w PATH lub podany w konfiguracji
 
+### 🧩 Kroki uruchomienia
+1. Sklonuj repo:
+   ```bash
+   git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git
+   ```
+2. Przejdź do katalogu:
+   ```bash
+   cd ZadaniaZaliczeniowe01
+   ```
+3. Uruchom testy:
+   ```bash
+   mvn clean test
+   ```
 
-## Autor
+> 💡 ChromeDriver powinien być w PATH lub skonfigurowany w `webdriver.chrome.driver`.
 
-Projekt wykonany w ramach kursu Automatyzacji Testów – CodersLab  
-Autor: [Wojciech Basista](https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git)
+---
+
+## 🛠️ Struktura projektu
+
+| Folder | Opis |
+|--------|------|
+| `src/test/java/pl/coderslab/pages` | Page Object Model |
+| `src/test/java/pl/coderslab/stepdefinitions` | Definicje kroków Cucumber |
+| `src/Cucumber/features` | Scenariusze BDD |
+
+---
+
+## 📦 Technologie
+- **Java**
+- **Selenium WebDriver**
+- **Cucumber (BDD)**
+- **JUnit 5**
+- **Maven**
+
+---
+
+## 📌 Wskazówki rekrutacyjne
+Projekt demonstruje:
+✔️ umiejętność analizy i automatyzacji testów UI  
+✔️ stosowanie Page Object Model  
+✔️ tworzenie scenariuszy BDD  
+✔️ integrację narzędzi testowych w jednym projekcie  
+✔️ zdolność do pracy z frameworkami popularnymi w branży QA
+
+---
+
+## ✏️ Autor
+Wojciech Basista – Junior QA Automation Tester  
+📧 wbasista4@gmail.com  
+GitHub: https://github.com/Wojciech1337
