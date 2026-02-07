@@ -1,65 +1,34 @@
-Opis projektu
-Automatyzacja testów end-to-end dla funkcjonalności zarządzania adresami w sklepie internetowym "MyStore TestLab" wykorzystując:
-- Java
-- Maven
-- Selenium WebDriver
-- Cucumber (BDD)
-- Page Object Model
-- JUnit 5
+# Zadania Zaliczeniowe 01 – Address Management Tests
 
-Testowane scenariusze
-Testy pokrywają:
-1. Logowanie użytkownika do konta.
-2. Przejście do sekcji „Addresses”.
-3. Dodanie nowego adresu z parametryzowanymi danymi.
-4. Weryfikację poprawności dodanego adresu.
-5. Usunięcie wcześniej dodanego adresu.
-6. Potwierdzenie usunięcia (brak adresu).  
-(Scenariusze BDD w pliku feature)
+Projekt automatyzacji testów end-to-end dla funkcjonalności zarządzania adresami w sklepie internetowym MyStore.  
+Zrealizowany w Javie z użyciem Selenium WebDriver, Cucumber (BDD), Page Object Model i JUnit 5.
 
 
- 🚀 Jak uruchomić projekt
+🔹 Zakres testów
 
- 📌 Wymagania
-- JDK 11 lub nowsze
-- Maven
-- ChromeDriver w PATH lub podany w konfiguracji
+Testy obejmują następujące scenariusze:
 
- 🧩 Kroki uruchomienia
-1. Sklonuj repo:
-   bash
-   git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git
-2. Przejdź do katalogu:
-   bash
-   cd ZadaniaZaliczeniowe01
-3. Uruchom testy:
-   bash
-   mvn clean test
+1. Logowanie użytkownika do konta  
+2. Przejście do sekcji „Addresses”  
+3. Dodanie nowego adresu z parametryzowanymi danymi  
+4. Weryfikację poprawności dodanego adresu  
+5. Usunięcie wcześniej dodanego adresu  
+6. Potwierdzenie usunięcia (adres nie istnieje)  
 
- 💡 ChromeDriver powinien być w PATH lub skonfigurowany w `webdriver.chrome.driver`.
+Scenariusze w formacie BDD znajdują się w folderze `src/Cucumber/features`.
 
- 🛠️ Struktura projektu
 
-src/test/java/pl/coderslab/pages` | Page Object Model |
-src/test/java/pl/coderslab/stepdefinitions` | Definicje kroków Cucumber |
-src/Cucumber/features` | Scenariusze BDD |
+▶️ Jak uruchomić projekt
 
- 📦 Technologie
-- Java
-- Selenium WebDriver
-- Cucumber (BDD)
-- JUnit 5
-- Maven
+Wymagania
 
-📌 Wskazówki rekrutacyjne
-Projekt demonstruje:
-✔️ umiejętność analizy i automatyzacji testów UI  
-✔️ stosowanie Page Object Model  
-✔️ tworzenie scenariuszy BDD  
-✔️ integrację narzędzi testowych w jednym projekcie  
-✔️ zdolność do pracy z frameworkami popularnymi w branży QA
+- JDK 11 lub nowsze  
+- Maven  
+- Google Chrome + ChromeDriver w PATH lub skonfigurowany w projekcie (`webdriver.chrome.driver`)  
 
-✏️ Autor
-Wojciech Basista – Junior QA Automation Tester  
-📧 wbasista4@gmail.com  
-GitHub: https://github.com/Wojciech1337
+Kroki uruchomienia
+
+1. Sklonuj repozytorium:
+
+git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git
+cd ZadaniaZaliczeniowe01
