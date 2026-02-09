@@ -1,34 +1,105 @@
-# Zadania Zaliczeniowe 01 – Address Management Tests
+# Zadanie Zaliczeniowe nr 1 – Automatyzacja adresów w MyStore TestLab
 
-Projekt automatyzacji testów end-to-end dla funkcjonalności zarządzania adresami w sklepie internetowym MyStore.  
-Zrealizowany w Javie z użyciem Selenium WebDriver, Cucumber (BDD), Page Object Model i JUnit 5.
+## Co robi projekt
+
+Ten projekt automatyzuje testy dodawania i usuwania adresów w sklepie MyStore TestLab. W testach wykorzystałem:
+
+* Selenium WebDriver  – do sterowania przeglądarką
+
+* Cucumber (BDD) – do opisu scenariuszy w języku naturalnym
+
+* Page Object Model (POM) – dla lepszej organizacji kodu
+
+Testy realizują następujący scenariusz:
+
+1. na istniejące konto użytkownika.
+
+2. Przejście do sekcji Addresses.
+
+3. Dodanie nowego adresu (alias, adres, miasto, kod pocztowy, kraj, telefon).
+
+4. Weryfikacja, że adres został poprawnie dodany.
+
+5. Usunięcie wcześniej dodanego adresu.
+
+6. Sprawdzenie, że adres został usunięty.
 
 
-🔹 Zakres testów
+## Technologie
 
-Testy obejmują następujące scenariusze:
+- Java 21
 
-1. Logowanie użytkownika do konta  
-2. Przejście do sekcji „Addresses”  
-3. Dodanie nowego adresu z parametryzowanymi danymi  
-4. Weryfikację poprawności dodanego adresu  
-5. Usunięcie wcześniej dodanego adresu  
-6. Potwierdzenie usunięcia (adres nie istnieje)  
+- Maven
 
-Scenariusze w formacie BDD znajdują się w folderze `src/Cucumber/features`.
+- Selenium WebDriver 4.33.0
 
+- Cucumber 7.23.0
 
-▶️ Jak uruchomić projekt
+- JUnit 4
 
-Wymagania
+- Page Object Model (POM)
 
-- JDK 11 lub nowsze  
-- Maven  
-- Google Chrome + ChromeDriver w PATH lub skonfigurowany w projekcie (`webdriver.chrome.driver`)  
+Uwaga: w projekcie używam JUnit 4, bo jest stabilny i działa najlepiej z Cucumberem w tej konfiguracji.
 
-Kroki uruchomienia
+## Struktura projektu
 
-1. Sklonuj repozytorium:
+zadaniezaliczeniowe01/
+
+├── src/
+
+│ ├── test/
+
+│ │ ├── java/
+
+│ │ │ └── pl/coderslab/
+
+│ │ │ ├── pages/
+
+│ │ │ │ ├── AddressPage.java
+
+│ │ │ │ ├── NewAddressPage.java
+
+│ │ │ │ └── LoginPage.java
+
+│ │ │ └── stepdefinitions/
+
+│ │ │ ├── AddressSteps.java
+
+│ │ │ ├── DeleteAddressSteps.java
+
+│ │ │ └── LoginSteps.java
+
+│ └── Cucumber/
+
+│ └── features/
+
+│ └── createanddeleteaddress.feature
+
+├── pom.xml
+
+└── README.md 
+
+## Testowe konto
+
+- Email: wojtek@wojtek.pl
+
+- Hasło: Masakra!23
+
+## Jak uruchomić testy
+
+1. Otwórz projekt w IntelliJ IDEA.
+
+2. W konsoli Maven wykonaj:
+
+mvn clean test
+
+lub uruchom bezpośrednio plik .feature w IntelliJ.
+
+3. Wyniki zobaczysz w konsoli.
+
+## Autor
+
+Wojciech Basista
 
 git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git
-cd ZadaniaZaliczeniowe01
+
