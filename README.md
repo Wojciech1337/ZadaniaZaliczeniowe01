@@ -85,21 +85,13 @@ zadaniezaliczeniowe01/
 
 - Hasło: Masakra!23
 
-## Jak uruchomić testy
-
-1. Otwórz projekt w IntelliJ IDEA.
-
-2. W konsoli Maven wykonaj:
-
-mvn clean test
-
-lub uruchom bezpośrednio plik .feature w IntelliJ.
-
-3. Wyniki zobaczysz w konsoli.
-
-## Autor
-
-Wojciech Basista
+## Uruchamianie testów
+1. Sklonuj repozytorium:
 
 git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git
 
+cd ZadaniaZaliczeniowe01 
+
+## Autor
+Projekt wykonany w ramach kursu Automatyzacji Testów – CodersLab
+Autor:  [Wojciech Basista](https://github.com/Wojciech1337)
