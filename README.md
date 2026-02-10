@@ -9,6 +9,7 @@ Page Object Model oraz JUnit 4.
 
 ## Zakres testów
 Testy obejmują następujące scenariusze:
+<<<<<<< HEAD
 1. Logowanie użytkownika do konta
 2. Przejście do sekcji **Addresses**
 3. Dodanie nowego adresu z parametryzowanymi danymi
@@ -24,6 +25,23 @@ Testy obejmują następujące scenariusze:
 - Selenium WebDriver
 - Cucumber (BDD)
 - Page Object Model
+=======
+1. Logowanie użytkownika do konta  
+2. Przejście do sekcji **Addresses**  
+3. Dodanie nowego adresu z parametryzowanymi danymi  
+4. Weryfikację poprawności dodanego adresu  
+5. Usunięcie wcześniej dodanego adresu  
+6. Potwierdzenie jego usunięcia
+   
+---
+
+## Technologie
+- Java 21  
+- Maven  
+- Selenium WebDriver  
+- Cucumber (BDD)  
+- Page Object Model  
+>>>>>>> 71edb0d3021c6e7420ad950306aed0c934ed1cc8
 - JUnit 4
 
 ---
