@@ -1,6 +1,8 @@
 # Zadania Zaliczeniowe 01 – Testy zarządzania adresami
 
-Projekt automatyzacji testów end‑to‑end dla funkcjonalności zarządzania adresami w sklepie internetowym **MyStore TestLab**.  
+Projekt automatyzacji testów end‑to‑end dla funkcjonalności zarządzania
+adresami w sklepie internetowym 
+**MyStore TestLab**.  
 Testy są realizowane w języku Java z użyciem Selenium WebDriver, Cucumber (BDD),
 Page Object Model oraz JUnit 4.
 
