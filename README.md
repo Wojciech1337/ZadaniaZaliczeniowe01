@@ -9,14 +9,13 @@ Page Object Model oraz JUnit 4.
 
 ## Zakres testów
 Testy obejmują następujące scenariusze:
-
 1. Logowanie użytkownika do konta  
 2. Przejście do sekcji **Addresses**  
 3. Dodanie nowego adresu z parametryzowanymi danymi  
 4. Weryfikację poprawności dodanego adresu  
 5. Usunięcie wcześniej dodanego adresu  
 6. Potwierdzenie jego usunięcia
-
+   
 ---
 
 ## Technologie
@@ -29,41 +28,51 @@ Testy obejmują następujące scenariusze:
 
 ---
 
-## Struktura projektu
-ZadaniaZaliczeniowe01/
+## Wymagania
 
-├── src/
-
-│ ├── test/
-
-│ │ ├── java/
-
-│ │ │ ├── pl/coderslab/pages/
-
-│ │ │ └── pl/coderslab/stepdefinitions/
-
-│ └── Cucumber/features/
-
-├── pom.xml
-
-└── README.md
+- Java 21+
+- Maven 3.9+
+- Chrome / Firefox
+- System: Windows / macOS / Linux
+- Git
 
 ---
 
+## Struktura projektu
 
+```text
+ZadaniaZaliczeniowe01/
+├── src/
+│   ├── test/java/pl/coderslab/
+│   │   ├── pages/
+│   │   │   ├── AccountPage.java
+│   │   │   ├── AddressPage.java
+│   │   │   ├── LoginPage.java
+│   │   │   └── NewAddressPage.java
+│   │   │
+│   │   └── stepdefinitions/
+│   │       ├── LoginSteps.java
+│   │       ├── AddressSteps.java
+│   │       └── DeleteSteps.java
+│   │
+│   └── Cucumber/features/
+│       └── createanddeleteaddress.feature
+│
+├── pom.xml
+└── README.md
+
+Projekt wykorzystuje wzorzec Page Object Model, gdzie każda strona aplikacji posiada własną klasę Page Object, a logika scenariuszy znajduje się w klasach Step Definitions.
+```
 ---
 
 ## Jak uruchomić testy
-
 1. Sklonuj repozytorium:
 
 ```bash
 git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git
 cd ZadaniaZaliczeniowe01
 ```
-
 ---
-
 2. Uruchom testy
 
  ```bash
@@ -71,7 +80,7 @@ cd ZadaniaZaliczeniowe01
 ```
 ---
 
-## Dane logowania testowego
+## Dane logowania testowego (konto demo)
 
 -Email: wojtek@wojtek.pl
 
